@@ -1,12 +1,16 @@
-var width = 1200,
-    height = 850;
+var margin = {top: 250, right: 50, bottom: 200, left: 50};
+
+var width = 1200 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
 
 var svg = d3.select("body").append("svg")
-  .attr("width", "100%")
-  .attr("height", "100%")
-  .attr("viewBox", "0 0 " + width + " " + height)
-  .attr("preserveAspectRatio", "xMidYMid meet")
-  .attr("display", "block");
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .attr("display", "block")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.json("data/113.json", drawGraph);
 
@@ -27,11 +31,11 @@ function drawGraph(data) {
 
   var link_distance = d3.scale.pow()
     .exponent(3)
-    .range([400, 1])
+    .range([300, 1])
     .domain(domain);
 
   var force = d3.layout.force()
-    .gravity(0.1)
+    .gravity(0.5)
     .charge(-1000)
     .linkDistance(function(d) {
       return link_distance(d.weight);
