@@ -1,7 +1,7 @@
-congressviz
+Voting Relationships in the US Senate
 ===========
 
-Visualization of partisanship in Congress (originally built for Harvard's CS109 Data Science).
+D3-based visualization of partisanship in Congress. Originally built for Harvard's CS109 (Data Science).
 
 -----------
 
