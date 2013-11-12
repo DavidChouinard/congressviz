@@ -1,4 +1,4 @@
-var width = 800,
+var width = 1200,
     height = 850;
 
 var svg = d3.select("body").append("svg")
@@ -8,7 +8,16 @@ var svg = d3.select("body").append("svg")
   .attr("preserveAspectRatio", "xMidYMid meet")
   .attr("display", "block");
 
-d3.json("data/101.json", drawGraph);
+d3.json("data/113.json", drawGraph);
+
+d3.select("#congress-picker > select")
+  .on("change", function(d) {
+    d3.select("#loading").style("display", null);
+    congress = this.options[this.selectedIndex].value;
+    d3.json("data/" + congress + ".json", drawGraph);
+  });
+
+d3.json("data2/112.json", drawGraph);
 
 function drawGraph(data) {
   // clear SVG
@@ -20,23 +29,14 @@ function drawGraph(data) {
 
   var link_distance = d3.scale.pow()
     .exponent(3)
-    .range([500, 1])
+    .range([400, 1])
     .domain(domain);
-
-  console.log(link_distance(106));
-  console.log(link_distance(212));
-  console.log(link_distance(424));
 
   var force = d3.layout.force()
     .gravity(0.1)
     .charge(-1000)
     .linkDistance(function(d) {
-      //console.log(d);
-      //console.log(1000 * (1 / d.weight));
-      //var value = (1000 * (1 / d.weight)) * (1000 * (1 / d.weight));
-      var value = link_distance(d.weight);
-      //console.log(value);
-      return value;
+      return link_distance(d.weight);
     })
     .linkStrength(0.05)
     .size([width, height])
@@ -93,6 +93,8 @@ function drawGraph(data) {
     .text(function(d) { return d.id });
 
   //force.alpha(0.01);
+
+  d3.select("#loading").style("display", "none");
 }
 
 function color(d) {

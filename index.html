@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title>Senate Voting Relationships in the 113th Congress (Harvard CS109 Homework 5)</title>
 
+    <link rel="stylesheet" type="text/css" href="main.css">
+
     <meta content="David Chouinard" name="author" />
     <meta name="twitter:card" content="photo">
     <meta name="twitter:creator" content="@DavidChouinard">
@@ -31,7 +33,35 @@
       })();
     </script>
   </head>
-  <body style="margin: 0;">
+  <body>
+    <header>
+      <div id="congress-picker">
+        <label>Congress (years):</label>
+        <select>
+          <option value="113" selected>113th (2013–2014)</option>
+          <option value="112">112th (2011–2012)</option>
+          <option value="111">111th (2009–2010)</option>
+          <option value="110">110th (2007–2008)</option>
+          <option value="109">109th (2005–2006)</option>
+          <option value="108">108th (2003–2004)</option>
+          <option value="107">107th (2001–2002)</option>
+          <option value="106">106th (1999–2000)</option>
+          <option value="105">105th (1997–1998)</option>
+          <option value="104">104th (1995–1996)</option>
+          <option value="103">103th (1993–1994)</option>
+          <option value="102">102th (1991–1992)</option>
+          <option value="101">101th (1989–1990)</option>
+        </select>
+      </div>
+
+      <h1>Voting Relationships in the US Senate</h1>
+    </header>
+
+    <div id="loading">
+      <span>Loading&hellip;</span>
+      <!--<img src="images/loading.gif" alt="Loading"/>-->
+    </div>
+
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="main.js"></script>
   </body>

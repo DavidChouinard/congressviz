@@ -1,5 +1,6 @@
 import json, requests, itertools
 import networkx as nx
+import numpy as np
 from networkx.readwrite import json_graph
 from bs4 import BeautifulSoup
 
@@ -15,8 +16,12 @@ def main():
 
         votes = vote_graph(votes)
 
+        weights = nx.get_edge_attributes(votes, 'weight').values()
+
         # Only include edges above a weight threshold
-        votes.remove_edges_from([(u,v,d) for u,v,d in votes.edges(data=True) if d['weight'] <= 100])
+        threshold = np.mean(weights) - 0.5 * np.std(weights)
+        print threshold
+        votes.remove_edges_from([(u,v,d) for u,v,d in votes.edges(data=True) if d['weight'] <= threshold])
 
         # Remove isolated edges (eg. senators who had very short terms)
         votes.remove_nodes_from(nx.isolates(votes))
