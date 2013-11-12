@@ -17,8 +17,6 @@ d3.select("#congress-picker > select")
     d3.json("data/" + congress + ".json", drawGraph);
   });
 
-d3.json("data2/112.json", drawGraph);
-
 function drawGraph(data) {
   // clear SVG
   svg.text('');
