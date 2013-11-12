@@ -16,7 +16,7 @@ def main():
         votes = vote_graph(votes)
 
         # Only include edges above a weight threshold
-        votes.remove_edges_from([(u,v,d) for u,v,d in votes.edges(data=True) if d['weight'] <= 105])
+        votes.remove_edges_from([(u,v,d) for u,v,d in votes.edges(data=True) if d['weight'] <= 100])
 
         # Remove isolated edges (eg. senators who had very short terms)
         votes.remove_nodes_from(nx.isolates(votes))
@@ -66,8 +66,6 @@ def vote_graph(data):
                         else:
                             color = 'k'
                         g.add_node(senator["display_name"], color=color)
-                else:
-                    print senator
 
             for senator1, senator2 in itertools.combinations(senators, 2):
                 if "display_name" in senator1 and "display_name" in senator2:
@@ -75,10 +73,6 @@ def vote_graph(data):
                         g[senator1["display_name"]][senator2["display_name"]]["weight"] += 1
                     else:
                         g.add_edge(senator1["display_name"], senator2["display_name"], weight=1)
-
-    for node0, node1 in g.edges_iter():
-        edge = g[node0][node1]
-        edge["difference"] = 1.0 / edge["weight"]
 
     return g
 
