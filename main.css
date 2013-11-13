@@ -24,6 +24,7 @@ header > h1 {
   line-height: 20px;
   font-size: 16px;
   margin: 0;
+  float: left;
 }
 
 #congress-picker {
@@ -56,3 +57,28 @@ header > h1 {
   top: 5px;
   margin-right: 12px;
 }
+
+@media only screen and (max-device-width: 480px) {
+
+  header {
+    text-align: center;
+  }
+
+  #congress-picker {
+    float: none !important;
+    font-size: 12px !important;
+    padding: 0 0 8px !important;
+  }
+
+  header > h1 {
+    float: none !important;
+    padding: 8px 0 6px !important;
+    font-size: 14px !important;
+  }
+
+  #loading > span {
+    font-size: 18px !important;
+  }
+
+}
+
