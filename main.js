@@ -43,7 +43,7 @@ function drawGraph(data) {
     .domain(domain);
 
   var force = d3.layout.force()
-    .gravity(0.1)
+    .gravity(0.2)
     .charge(-1000)
     .linkDistance(function(d) {
       return link_distance(d.weight);
