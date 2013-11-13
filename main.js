@@ -25,6 +25,14 @@ function drawGraph(data) {
   // clear SVG
   svg.text('');
 
+  // Initialize nodes to that Republicans are roughly to the right
+  for (var i = 0; i < data.nodes.length; i++) {
+    if (data.nodes[i].color  == "b")
+      data.nodes[i]["x"] = 0;
+    else if (data.nodes[i].color == "r")
+      data.nodes[i]["x"] = width;
+  }
+
   var domain = d3.extent(data.links, function(d) {
     return d.weight;
   })
@@ -35,7 +43,7 @@ function drawGraph(data) {
     .domain(domain);
 
   var force = d3.layout.force()
-    .gravity(0.5)
+    .gravity(0.1)
     .charge(-1000)
     .linkDistance(function(d) {
       return link_distance(d.weight);
@@ -100,9 +108,9 @@ function drawGraph(data) {
 }
 
 function color(d) {
-  if (d["color"] == "b")
+  if (d.color == "b")
     return d3.lab("#1414ff");
-  else if (d["color"] == "r")
+  else if (d.color == "r")
     return d3.lab("#ff1414");
   else
     return d3.lab("#646464");
