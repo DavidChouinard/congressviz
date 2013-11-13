@@ -3,7 +3,7 @@ Voting Relationships in the US Senate
 
 D3-based visualization of partisanship in Congress. Outgrown out of work for Harvard's CS109 (Data Science).
 
-![Preview](https://raw.github.com/DavidChouinard/congressviz/master/preview.jpg)
+![Preview](https://raw.github.com/DavidChouinard/congressviz/master/preview.png)
 
 ### Running locally
 
