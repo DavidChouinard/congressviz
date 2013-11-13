@@ -28,9 +28,9 @@ function drawGraph(data) {
   // Initialize nodes to that Republicans are roughly to the right
   for (var i = 0; i < data.nodes.length; i++) {
     if (data.nodes[i].color  == "b")
-      data.nodes[i]["x"] = 0;
+      data.nodes[i]["x"] = width / 4;
     else if (data.nodes[i].color == "r")
-      data.nodes[i]["x"] = width;
+      data.nodes[i]["x"] = 3 * width / 4;
   }
 
   var domain = d3.extent(data.links, function(d) {
@@ -39,11 +39,11 @@ function drawGraph(data) {
 
   var link_distance = d3.scale.pow()
     .exponent(3)
-    .range([300, 1])
+    .range([250, 1])
     .domain(domain);
 
   var force = d3.layout.force()
-    .gravity(0.2)
+    .gravity(0.1)
     .charge(-1000)
     .linkDistance(function(d) {
       return link_distance(d.weight);
