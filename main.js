@@ -60,7 +60,7 @@ function drawGraph(data) {
 
   // Initiliaze force layout statically
   force.start();
-  for (var i = 10 * data.nodes.length * data.nodes.length; i > 0; --i) force.tick();
+  for (var i = data.links.length; i > 0; --i) force.tick();
   force.stop();
 
   links = svg.selectAll(".link")
